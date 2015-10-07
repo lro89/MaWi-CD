@@ -1,0 +1,30 @@
+<div class="span10 offset2">
+  <div class="row">
+    <h2 class="span4 offset2">{{ ctrl.movie.title }}</h2>
+  </div>
+  <div class="row">
+    <form class="form-horizontal" role="form" name="form" ng-submit="form.$valid && ctrl.save()">
+      <div class="control-group">
+        <label class="control-label" for="description">Description</label>
+        <div class="controls">
+          <textarea class="input-block-level" rows="5" id="description" disabled>{{ ctrl.movie.description }}</textarea>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="quantity">Quantity</label>
+        <div class="controls">
+          <input class="input-block-level" name="movieQuantity"
+                     ng-model="ctrl.movie.quantity" id="quantity"/>
+        </div>
+        <label class="control-label" for="price">Price</label>
+        <div class="controls">
+          <input class="input-block-level" name="moviePrice"
+                     ng-model="ctrl.movie.price" id="price"/>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary offset2">Save</button>
+      <a href="" ng-click="ctrl.back()" class="btn">Back to list</a>
+      <a href="{{ ctrl.movie.movieUrl }}" class="btn">Movie</a>
+    </form>
+  </div>
+</div>
