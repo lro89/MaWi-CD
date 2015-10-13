@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
 echo "Build all services..."
-#mvn clean install
-#sudo apt-get install nodejs-legacy
+mvn clean install
+sudo apt-get install nodejs-legacy
 cd movie-database-shop-app
-#sudo rm -rf node_modules
-#sudo npm install
-#bower install --allow-root
-#sudo grunt
+sudo rm -rf node_modules
+sudo npm install
+bower install --allow-root
+sudo grunt
+dir
 mkdir opt
 cd opt
 mkdir moviedatabase
+cd moviedatabase
 sudo chmod 777 moviedatabase
-cd ../
-rm -rf /opt/moviedatabase/shop-app
-#cp  -R dist/. /opt/moviedatabase/shop-app
 cd ..
+cd ..
+dir
+rm -rf /opt/moviedatabase/shop-app
+sudo cp  -R dist/ opt/moviedatabase/shop-app/
+cd ..
+sudo docker-compose up
