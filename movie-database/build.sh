@@ -3,8 +3,11 @@ echo "Build all services..."
 mvn clean install
 cd movie-database-shop-app
 sudo rm -rf node_modules
+sudo npm install -g grunt-cli
+sudo npm install grunt
+sudo npm install -g bower
 sudo npm install
-bower install --allow-root
+sudo bower --allow-root install
 sudo grunt
 mkdir opt
 cd opt
@@ -18,3 +21,4 @@ rm -rf /opt/moviedatabase/shop-app
 sudo cp  -R dist/. opt/moviedatabase/shop-app/
 cd ..
 sudo docker-compose up
+
