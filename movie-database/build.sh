@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 echo "Build all services..."
 mvn clean install
-sudo apt-get install nodejs-legacy
 cd movie-database-shop-app
 sudo rm -rf node_modules
 sudo npm install
