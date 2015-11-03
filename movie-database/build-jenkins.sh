@@ -9,10 +9,13 @@ echo "Bower-Install start..."
 bower install --allow-root
 echo "GRUNT start..."
 sudo grunt
+echo "mkdir opt"
 mkdir opt
 cd opt
+echo "mkdir moviedatabase"
 mkdir moviedatabase
 cd moviedatabase
+echo "mkdir shop-app"
 mkdir shop-app
 cd ..
 sudo chmod 777 moviedatabase
