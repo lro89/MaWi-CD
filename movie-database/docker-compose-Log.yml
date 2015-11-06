@@ -1,0 +1,51 @@
+# Security Storage
+redis:
+  image: redis
+movies:
+  build: movie-database-movies
+  ports:
+   - "8080:8080"
+  links:
+  - redis
+  - monitoring
+  - navigation
+  log_driver: "syslog"
+  log_opt:
+    syslog-address: "tcp://192.168.99.100:5000"
+actors:
+  build: movie-database-actors
+  ports:
+   - "8082:8082"
+  links:
+  - redis
+  - monitoring
+  - navigation
+navigation:
+  build: movie-database-navigation
+  ports:
+   - "8081:8081"
+  links:
+  - redis
+  - monitoring
+shop:
+  build: movie-database-shop-rest
+  ports:
+   - "8084:8084"
+  links:
+  - redis
+  - monitoring
+shopgui:
+  build: movie-database-shop-app
+  ports:
+   - "80:80"
+  links:
+  - movies
+  - actors
+  - navigation
+  - shop
+monitoring:
+  build: movie-database-monitoring
+  ports:
+   - "8083:8083"
+
+
