@@ -11,7 +11,8 @@ movies:
   - navigation
   log_driver: "syslog"
   log_opt:
-    syslog-address: "tcp://192.168.99.100:5000"
+    syslog-address: "tcp://52.29.31.102:5000"
+#    syslog-address: "tcp://192.168.99.100:5000"
 actors:
   build: movie-database-actors
   ports:
