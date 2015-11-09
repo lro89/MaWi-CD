@@ -21,4 +21,4 @@ rm -rf /opt/moviedatabase/shop-app
 sudo cp  -R dist/. opt/moviedatabase/shop-app/
 cd ..
 echo "Docker-Compose build..."
-sudo docker-compose build
+docker-compose build
