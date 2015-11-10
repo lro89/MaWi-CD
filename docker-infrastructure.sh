@@ -4,5 +4,5 @@ sudo yum update -y
 wget https://get.docker.com/builds/Linux/x86_64/docker-latest
 chmod +x docker-latest
 sudo service cgconfig restart
-sudo ./docker-latest -d &
+sudo nohup ./docker-latest daemon
 sudo pip install -U docker-compose
