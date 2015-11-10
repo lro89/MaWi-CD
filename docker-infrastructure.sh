@@ -1,7 +1,8 @@
-# Installation Docker in Version 1.7.2 und Docker-Compose
+# Installation Docker in Version 1.9 (binary) und Docker-Compose
 # Infrastruktur für T-Stage und P-Stage
 sudo yum update -y 
-sudo yum install -y docker 
-sudo service docker start 
-sudo usermod -a -G docker ec2-user 
+wget https://get.docker.com/builds/Linux/x86_64/docker-latest
+chmod +x docker-latest
+sudo service cgconfig restart
+sudo ./docker-latest -d &
 sudo pip install -U docker-compose
