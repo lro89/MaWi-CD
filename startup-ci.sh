@@ -6,4 +6,4 @@ sudo nohup ./docker-latest daemon
 # ELK-Stack Start
 cd elk-stack/mvdb-docker-elk/
 git pull
-sudo nohup docker-compose up
+docker-compose up -d
