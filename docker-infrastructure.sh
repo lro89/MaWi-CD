@@ -8,3 +8,6 @@ sudo  killall docker
 sudo service cgconfig restart
 sudo nohup ./docker-latest daemon
 sudo pip install -U docker-compose
+cd elk-stack/mvdb-docker-elk/
+git pull
+sudo nohup docker-compose up
