@@ -13,13 +13,17 @@ movies:
     syslog-address: "tcp://52.29.31.102:5000"
     tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
 actors:
-  image: cdzwei/mvdb_actors
+  image: cdzwei/mvdb_actors:${ACTORS_VERSION}
   ports:
    - "8082:8082"
   links:
   - redis
   - monitoring
   - navigation
+  log_driver: "syslog"
+  log_opt:
+    syslog-address: "tcp://52.29.31.102:5000"
+    tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
 navigation:
   image: cdzwei/mvdb_navigation
   ports:
