@@ -1,0 +1,49 @@
+redis:
+  image: redis
+movies:
+  image: cdzwei/mvdb_movies:${MOVIES_VERSION}
+  ports:
+   - "8080:8080"
+  links:
+  - redis
+  - monitoring
+  - navigation
+  log_driver: "syslog"
+  log_opt:
+    syslog-address: "tcp://52.29.31.102:5000"
+    tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
+actors:
+  image: cdzwei/mvdb_actors
+  ports:
+   - "8082:8082"
+  links:
+  - redis
+  - monitoring
+  - navigation
+navigation:
+  image: cdzwei/mvdb_navigation
+  ports:
+   - "8081:8081"
+  links:
+  - redis
+  - monitoring
+shop:
+  image: cdzwei/mvdb_shop
+  ports:
+   - "8084:8084"
+  links:
+  - redis
+  - monitoring
+shopgui:
+  image: cdzwei/mvdb_shopgui
+  ports:
+   - "80:80"
+  links:
+  - movies
+  - actors
+  - navigation
+  - shop
+monitoring:
+  image: cdzwei/mvdb_monitoring
+  ports:
+   - "8083:8083"
