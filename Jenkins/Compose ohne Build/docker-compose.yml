@@ -11,7 +11,7 @@ movies:
   log_driver: "syslog"
   log_opt:
     syslog-address: "tcp://52.29.31.102:5000"
-    tag: "movies"
+    tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
 actors:
   image: cdzwei/mvdb_actors
   ports:
