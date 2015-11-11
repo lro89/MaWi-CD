@@ -1,7 +1,7 @@
 redis:
   image: redis
 movies:
-  image: cdzwei/mvdb_movies:${MOVIES_VERSION}
+  image: cdzwei/mvdb_movies
   ports:
    - "8080:8080"
   links:
