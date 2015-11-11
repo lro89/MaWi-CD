@@ -1,4 +1,6 @@
-# Jenkins
+# Installation und Konfiguration des CI-Servers
+# Vorher docker-infrastructure.sh ausführen
+# Jenkins Installation
 sudo yum update
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
 sudo rpm --import http://pkg.jenkins-ci.org/redhat-stable/jenkins-ci.org.key
