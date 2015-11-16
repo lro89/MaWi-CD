@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Startup-Scrit für CI-Server
 #Docker Start
 sudo service cgconfig restart
