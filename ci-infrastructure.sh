@@ -1,3 +1,14 @@
+#**********************************************************************************************
+# Die folgenden Schritte müssen nach der Ausführung dieses Skriptes manuell ausgeführt werden
+# awssolaris.pem auf Server hochladen mit SFTP
+#
+# Key in Jenkins-Ordner kopieren
+# sudo cp awssolaris.pem /var/lib/jenkins/
+# 
+# Jenkins Zugriff auf die Datei erlauben
+# sudo chown jenkins:jenkins awssolaris.pem
+#**********************************************************************************************
+#**********************************************************************************************
 # Installation und Konfiguration des CI-Servers
 # Vorher docker-infrastructure.sh ausführen
 # Jenkins Installation
@@ -18,3 +29,11 @@ sudo yum install -y git
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo 
 sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo 
 sudo yum install -y apache-maven 
+
+# Git Repositories clonen
+# Metadatenrepository
+cd /home/ec2-user/
+git clone https://github.com/lro89/MaWi-CD.git
+# Jenkins Konfiguation
+cd /var/lib/jenkins
+git clone https://github.com/CDhoch2/jenkins-config.git
