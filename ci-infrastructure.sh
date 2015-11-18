@@ -1,12 +1,12 @@
 #**********************************************************************************************
 # Die folgenden Schritte müssen nach der Ausführung dieses Skriptes manuell ausgeführt werden
-# awssolaris.pem auf Server hochladen mit SFTP
+# *.pem auf Server hochladen mit SFTP
 #
 # Key in Jenkins-Ordner kopieren
-# sudo cp awssolaris.pem /var/lib/jenkins/
+# sudo cp *.pem /var/lib/jenkins/
 # 
 # Jenkins Zugriff auf die Datei erlauben
-# sudo chown jenkins:jenkins awssolaris.pem
+# sudo chown jenkins:jenkins *.pem
 #**********************************************************************************************
 #**********************************************************************************************
 # Installation und Konfiguration des CI-Servers
