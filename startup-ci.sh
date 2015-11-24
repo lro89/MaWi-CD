@@ -12,3 +12,7 @@ git pull
 docker-compose up -d
 
 echo "ELK-Stack gestartet"
+
+# SonarQube Container starten
+echo "Starte SonarQube..."
+sudo /home/ec2-user/docker-latest start sonarqube
