@@ -15,4 +15,4 @@ echo "ELK-Stack gestartet"
 
 # SonarQube Container starten
 echo "Starte SonarQube..."
-sudo /home/ec2-user/docker-latest start sonarqube
+sudo /home/ec2-user/docker-latest run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube:5.1
