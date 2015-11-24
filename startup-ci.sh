@@ -9,7 +9,7 @@ echo "Docker Daemon gestartet"
 # ELK-Stack Start
 cd /home/ec2-user/elk-stack/mvdb-docker-elk/
 git pull
-docker-compose up -f /home/ec2-user/elk-stack/mvdb-docker-elk/docker-compose.yml -d
+su - ec2-user -c  "cd /home/ec2-user/elk-stack/mvdb-docker-elk/;docker-compose up"
 
 echo "ELK-Stack gestartet"
 
