@@ -7,6 +7,15 @@
 # 
 # Jenkins Zugriff auf die Datei erlauben
 # sudo chown jenkins:jenkins *.pem
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Um bei Jenkins die sudo Passwortnachfrage abzuschalten müssen folgede Schritte ausgeführt werden: 
+# sudo visudo 
+# An das Ende der Datei gehen und Leerzeile einfügen, dann in neuer Zeile folgendes einfügen: 
+# jenkins ALL=(ALL) NOPASSWD: ALL 
+# Strg + O (Speichern) 
+# Strg + X (Exit) 
+# Speziell für Linux AMI noch folgede Zeile bearbeiten: 
+# Defaults !requiretty
 #**********************************************************************************************
 #**********************************************************************************************
 # Installation und Konfiguration des CI-Servers
