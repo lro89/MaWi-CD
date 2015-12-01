@@ -9,13 +9,13 @@ import de.codecentric.moviedatabase.navigation.controller.NavigationController;
 @Configuration 
 public class ControllerConfiguration {
 	
-	@Value("${moviedatabase.movies.url.base}")
+	@Value("${moviedatabase.movies.url.baseT}")
 	private String moviesBaseUrl;
 	
-	@Value("${moviedatabase.actors.url.base}")
+	@Value("${moviedatabase.actors.url.baseT}")
 	private String actorsBaseUrl;
 	
-	@Value("${moviedatabase.shop.url.base}")
+	@Value("${moviedatabase.shop.url.baseT}")
 	private String shopBaseUrl;
 	
 	@Bean
