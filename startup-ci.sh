@@ -14,7 +14,7 @@ su - ec2-user -c  "cd /home/ec2-user/elk-stack/mvdb-docker-elk/;docker-compose u
 echo "ELK-Stack gestartet"
 
 # Start Nexus
-
+sudo /home/ec2-user/docker-latest run -d -p 8081:8081 --name nexus -v /home/ec2-user/nexus-data:/sonatype-work sonatype/nexus:oss
 
 # SonarQube Container starten
 echo "Starte SonarQube..."
