@@ -14,6 +14,8 @@ repos.each
   {
     println "Erstelle Job: ${name}"
     println "Git-Clone-URL: ${gitCloneUrl}"
+    println "Artefakt-Repo-URL: ${artifactRepoURL}"
+    println "Artefakt-Repo-ID: ${artifactRepoID}"
     
     mavenJob("DSL-Test - ${name}")
     {
