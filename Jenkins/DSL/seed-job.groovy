@@ -127,6 +127,8 @@ sudo sh docker-build.sh'''
         
         shell(shellCmd_DockerBuild)
         
+        /* TODO: Noch zu klären, ob die Echos wichtig sind oder nicht ?!
+        
         def shellCmd_DockerPush = '''echo "GIT_ACTORS"
 echo $GIT_ACTORS
 echo "GIT_SHOP_APP"
@@ -138,6 +140,9 @@ echo $GIT_MONITORING
 echo "GIT_NAVIGATION"
 echo $GIT_NAVIGATION
 cd Jenkins
+sudo sh dockerhub-push.sh'''
+*/
+        def shellCmd_DockerPush = '''cd Jenkins
 sudo sh dockerhub-push.sh'''
         
         shell(shellCmd_DockerPush)
