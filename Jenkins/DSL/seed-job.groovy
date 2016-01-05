@@ -9,7 +9,7 @@ repos.each
   def gitCloneUrl = it.clone_url	//Die Git-URL, die zum Klonen verwendet wird (d.h. mit *.git am Ende)
   def gitProjectUrl = it.html_url	//Die normale Web-URL des Projekts/Repos
   
-  if(name == "movie-database-movies") //if-Beschränkung gilt nur fürs Testen der DSL (muss später weg!)
+  if(name == "movie-database-movies" | name == "movie-database-actors") 
   {
     println "Erstelle Job: ${name}"
     println "Git-Clone-URL: ${gitCloneUrl}"
@@ -48,7 +48,12 @@ repos.each
       
       postBuildSteps('SUCCESS')
       {
-        def shellCmd_GitCommits = '''cd /var/lib/jenkins/jobs/movie-database-actors/workspace/
+        def shellCmd_GitCommits
+        
+        switch(name)
+        {
+          case "movie-database-movies":
+            shellCmd_GitCommits = '''cd /var/lib/jenkins/jobs/movie-database-actors/workspace/
 # Nur ein ">" damit die Datei zunächst überschrieben wird
 echo "GIT_ACTORS=$(git log | head -1 | sed s/'commit '//)" > $WORKSPACE/env.properties
 cd /var/lib/jenkins/jobs/movie-database-shop-app/workspace/
@@ -59,6 +64,22 @@ cd /var/lib/jenkins/jobs/movie-database-monitoring/workspace/
 sudo echo "GIT_MONITORING=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties
 cd /var/lib/jenkins/jobs/movie-database-navigation/workspace/
 sudo echo "GIT_NAVIGATION=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties'''
+            break
+          case "movie-database-actors":
+            shellCmd_GitCommits = '''cd /var/lib/jenkins/jobs/movie-database-movies/workspace/
+# Nur ein ">" damit die Datei zunächst überschrieben wird
+echo "GIT_MOVIES=$(git log | head -1 | sed s/'commit '//)" > $WORKSPACE/env.properties
+cd /var/lib/jenkins/jobs/movie-database-shop-app/workspace/
+sudo echo "GIT_SHOP_APP=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties
+cd /var/lib/jenkins/jobs/movie-database-shop-rest/workspace/
+sudo echo "GIT_SHOP_REST=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties
+cd /var/lib/jenkins/jobs/movie-database-monitoring/workspace/
+sudo echo "GIT_MONITORING=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties
+cd /var/lib/jenkins/jobs/movie-database-navigation/workspace/
+sudo echo "GIT_NAVIGATION=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties'''
+            break
+    
+        }
         
         shell(shellCmd_GitCommits)
         
