@@ -1,14 +1,13 @@
 def gitAPI = new URL("https://api.github.com/users/CDhoch2/repos")
 def repos = new groovy.json.JsonSlurper().parse(gitAPI.newReader())
+def artifactRepoURL = "http://52.29.31.102:8081/content/repositories/snapshots/"
+def artifactRepoID = "nexus"
 
 repos.each
 {
   def name = it.name
   def gitCloneUrl = it.clone_url	//Die Git-URL, die zum Klonen verwendet wird (d.h. mit *.git am Ende)
   def gitProjectUrl = it.html_url	//Die normale Web-URL des Projekts/Repos
-  
-  def artifactRepoURL = "http://52.29.31.102:8081/content/repositories/snapshots/"
-  def artifactRepoID = "nexus"
   
   if(name == "movie-database-movies") //if-Beschränkung gilt nur fürs Testen der DSL (muss später weg!)
   {
