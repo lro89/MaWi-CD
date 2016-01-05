@@ -6,6 +6,10 @@ def artifactRepoID = "nexus"
 //Namen der jeweiligen Repo- bzw. Projekte
 def moviesRepoName = "movie-database-movies"
 def actorsRepoName = "movie-database-actors"
+def shopAppRepoName = "movie-database-shop-app"
+def shopRestRepoName = "movie-database-shop-rest"
+def monitoringRepoName = "movie-database-monitoring"
+def navigationRepoName = "movie-database-navigation"
 
 
 /*
@@ -38,6 +42,18 @@ sudo echo "GIT_MONITORING=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPAC
 cd /var/lib/jenkins/jobs/movie-database-navigation/workspace/
 sudo echo "GIT_NAVIGATION=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties'''
 
+//Befehl zum Auslesen der Commits-IDs (speziell für den navigation-Job!)
+def navigationCmd_PostBuild_ReadCommitIDs = '''cd /var/lib/jenkins/jobs/movie-database-movies/workspace/
+# Nur ein ">" damit die Datei zunächst überschrieben wird
+echo "GIT_MOVIES=$(git log | head -1 | sed s/'commit '//)" > $WORKSPACE/env.properties
+cd /var/lib/jenkins/jobs/movie-database-shop-app/workspace/
+sudo echo "GIT_SHOP_APP=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties
+cd /var/lib/jenkins/jobs/movie-database-shop-rest/workspace/
+sudo echo "GIT_SHOP_REST=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties
+cd /var/lib/jenkins/jobs/movie-database-monitoring/workspace/
+sudo echo "GIT_MONITORING=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties
+cd /var/lib/jenkins/jobs/movie-database-actors/workspace/
+sudo echo "GIT_ACTORS=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties'''
 
 repos.each
 {
@@ -45,7 +61,7 @@ repos.each
   def gitCloneUrl = it.clone_url	//Die Git-URL, die zum Klonen verwendet wird (d.h. mit *.git am Ende)
   def gitProjectUrl = it.html_url	//Die normale Web-URL des Projekts/Repos
   
-  if(name == moviesRepoName | name == actorsRepoName) 
+  if(name == moviesRepoName | name == actorsRepoName | name == navigationRepoName) 
   {
     println "Erstelle Job: ${name}"
     println "Git-Clone-URL: ${gitCloneUrl}"
@@ -88,13 +104,15 @@ repos.each
         
         switch(name)
         {
-          case "movie-database-movies":
+          case moviesRepoName:
             shellCmd_GitCommits = moviesCmd_PostBuild_ReadCommitIDs
             break
-          case "movie-database-actors":
+          case actorsRepoName:
             shellCmd_GitCommits = actorsCmd_PostBuild_ReadCommitIDs
             break
-    
+          case navigationRepoName:
+            shellCmd_GitCommits = navigationCmd_PostBuild_ReadCommitIDs
+            break
         }
         
         shell(shellCmd_GitCommits)
@@ -146,7 +164,7 @@ sudo sh dockerhub-push.sh'''
                   predefinedProp("MOVIES_GIT_ID", name == moviesRepoName ? "\$GIT_COMMIT":"\$GIT_MOVIES")
                   predefinedProp("SHOP_REST_GIT_ID", "\$GIT_SHOP_REST")
                   predefinedProp("SHOP_APP_GIT_ID", "\$GIT_SHOP_APP")
-                  predefinedProp("NAVIGATION_GIT_ID", "\$GIT_NAVIGATION")
+                  predefinedProp("NAVIGATION_GIT_ID", name == navigationRepoName ? "\$GIT_COMMIT":"\$GIT_NAVIGATION")
                   predefinedProp("MONITORING_GIT_ID", "\$GIT_MONITORING")
                 }
             }
