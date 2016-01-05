@@ -6,9 +6,9 @@ def artifactRepoID = "nexus"
 //Namen der jeweiligen Repo- bzw. Projekte
 def moviesRepoName = "movie-database-movies"
 def actorsRepoName = "movie-database-actors"
-def shopAppRepoName = "movie-database-shop-app"
-def shopRestRepoName = "movie-database-shop-rest"
-def monitoringRepoName = "movie-database-monitoring"
+//def shopAppRepoName = "movie-database-shop-app"
+//def shopRestRepoName = "movie-database-shop-rest"
+//def monitoringRepoName = "movie-database-monitoring"
 def navigationRepoName = "movie-database-navigation"
 
 
