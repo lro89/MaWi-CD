@@ -230,7 +230,7 @@ sudo sh docker-build.sh'''
     {
       jobs
       {
-        name(jobName)
+        name("$jobName")
       }
     }
   }
