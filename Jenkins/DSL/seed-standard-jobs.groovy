@@ -80,7 +80,7 @@ sudo echo "GIT_NAVIGATION=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPAC
 cd /var/lib/jenkins/jobs/movie-database-actors/workspace/
 sudo echo "GIT_ACTORS=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/env.properties'''
 
-def shopRest_PostBuild_ReadCommitIDs = '''cd /var/lib/jenkins/jobs/movie-database-movies/workspace/
+def shopRestCmd_PostBuild_ReadCommitIDs = '''cd /var/lib/jenkins/jobs/movie-database-movies/workspace/
 # Nur ein ">" damit die Datei zunächst überschrieben wird
 echo "GIT_MOVIES=$(git log | head -1 | sed s/'commit '//)" > $WORKSPACE/env.properties
 cd /var/lib/jenkins/jobs/movie-database-monitoring/workspace/
