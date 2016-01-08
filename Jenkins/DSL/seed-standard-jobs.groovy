@@ -226,6 +226,7 @@ sudo sh docker-build.sh'''
       }
     }
     
+    /*
     listView('DSL-Jobs')
     {
       jobs
@@ -243,5 +244,6 @@ sudo sh docker-build.sh'''
         buildButton()
       }
     }
+    */
   }
 }
