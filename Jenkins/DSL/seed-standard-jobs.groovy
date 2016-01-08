@@ -99,7 +99,7 @@ repos.each
   def gitProjectUrl = it.html_url	//Die normale Web-URL des Projekts/Repos
   
   if(name == moviesRepoName | name == actorsRepoName | name == navigationRepoName 
-          | name == monitoringRepoName | name == shopAppRepoName | name == shopAppRestName) 
+          | name == monitoringRepoName | name == shopAppRepoName | name == shopRestRepoName) 
   {
     println "Erstelle Job: ${name}"
     println "Git-Clone-URL: ${gitCloneUrl}"
