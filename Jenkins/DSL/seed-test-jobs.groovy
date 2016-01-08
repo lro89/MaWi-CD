@@ -44,9 +44,12 @@ repos.each
       
       goals(mavenGoal)
       
-      publishers
+      postBuildSteps
       {
-        downstream(postProjects, 'SUCCESS')
+        downStreamParameterized
+        {
+          trigger(postProjects)
+        }
       }
     }
   }
