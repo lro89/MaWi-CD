@@ -8,7 +8,7 @@ def mavenGoal = "test -Dmovie-database-url=http://ec2-52-29-100-175.eu-central-1
 def postProjects = ['p1-deploy','p2-deploy']
 
 //Namen der jeweiligen Repo- bzw. Projekte
-def commonsRepoName = "movie-database-test"
+def testRepoName = "movie-database-test"
 
 repos.each
 {
@@ -16,7 +16,7 @@ repos.each
   def gitCloneUrl = it.clone_url	//Die Git-URL, die zum Klonen verwendet wird (d.h. mit *.git am Ende)
   def gitProjectUrl = it.html_url	//Die normale Web-URL des Projekts/Repos
   
-  if(repoName == commonsRepoName | repoName == securityRepoName) 
+  if(repoName == testRepoName) 
   {
     println "Erstelle Job: ${repoName}"
     println "Git-Clone-URL: ${gitCloneUrl}"
