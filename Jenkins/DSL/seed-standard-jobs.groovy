@@ -94,15 +94,15 @@ sudo echo "GIT_ACTORS=$(git log | head -1 | sed s/'commit '//)" >> $WORKSPACE/en
 
 repos.each
 {
-  def name = it.name
+  def repoName = it.name
   def gitCloneUrl = it.clone_url	//Die Git-URL, die zum Klonen verwendet wird (d.h. mit *.git am Ende)
   def gitProjectUrl = it.html_url	//Die normale Web-URL des Projekts/Repos
-  def jobName = "DSL-Test - ${name}"
+  def jobName = "DSL-Test - ${repoName}"
   
-  if(name == moviesRepoName | name == actorsRepoName | name == navigationRepoName 
-          | name == monitoringRepoName | name == shopAppRepoName | name == shopRestRepoName) 
+  if(repoName == moviesRepoName | repoName == actorsRepoName | repoName == navigationRepoName 
+          | repoName == monitoringRepoName | repoName == shopAppRepoName | repoName == shopRestRepoName) 
   {
-    println "Erstelle Job: ${name}"
+    println "Erstelle Job: ${jobName}"
     println "Git-Clone-URL: ${gitCloneUrl}"
     
     mavenJob(jobName)
@@ -124,7 +124,7 @@ repos.each
         githubPush()    
       }
       
-      rootPOM("${name}/pom.xml")
+      rootPOM("${repoName}/pom.xml")
       
       wrappers
       {
@@ -139,7 +139,7 @@ repos.each
       {
         def shellCmd_GitCommits
         
-        switch(name)
+        switch(repoName)
         {
           case moviesRepoName:
             shellCmd_GitCommits = moviesCmd_PostBuild_ReadCommitIDs
@@ -169,7 +169,7 @@ repos.each
         }
         
         //Bei 'shop-app' muss noch ein zusätzlicher Befehl zur Installation der NPM-Tools etc. erfolgen
-        if(name == shopAppRepoName)
+        if(repoName == shopAppRepoName)
         {
           def shopAppCommand_JenkinsBuild = "cd Jenkins\n" +
                                             "sudo sh build-jenkins.sh"
@@ -182,12 +182,12 @@ sudo sh docker-build.sh'''
         
         shell(shellCmd_DockerBuild)
         
-        def shellCmd_DockerPush = "echo \"Commit-ID von ${moviesRepoName}: " + (name == moviesRepoName ? "\${GIT_COMMIT}":"\${GIT_MOVIES}") + "\"\n" +
-                   "echo \"Commit-ID von ${actorsRepoName}: " + (name == actorsRepoName ? "\${GIT_COMMIT}":"\${GIT_ACTORS}") + "\"\n" +
-                   "echo \"Commit-ID von ${navigationRepoName}: " + (name == navigationRepoName ? "\${GIT_COMMIT}":"\${GIT_NAVIGATION}") + "\"\n" +
-                   "echo \"Commit-ID von ${monitoringRepoName}: " + (name == monitoringRepoName ? "\${GIT_COMMIT}":"\${GIT_MONITORING}") + "\"\n" +
-                   "echo \"Commit-ID von ${shopAppRepoName}: " + (name == shopAppRepoName ? "\${GIT_COMMIT}":"\${GIT_SHOP_APP}") + "\"\n" +
-                   "echo \"Commit-ID von ${shopRestRepoName}: " + (name == shopRestRepoName ? "\${GIT_COMMIT}":"\${GIT_SHOP_REST}") + "\"\n" +
+        def shellCmd_DockerPush = "echo \"Commit-ID von ${moviesRepoName}: " + (repoName == moviesRepoName ? "\${GIT_COMMIT}":"\${GIT_MOVIES}") + "\"\n" +
+                   "echo \"Commit-ID von ${actorsRepoName}: " + (repoName == actorsRepoName ? "\${GIT_COMMIT}":"\${GIT_ACTORS}") + "\"\n" +
+                   "echo \"Commit-ID von ${navigationRepoName}: " + (repoName == navigationRepoName ? "\${GIT_COMMIT}":"\${GIT_NAVIGATION}") + "\"\n" +
+                   "echo \"Commit-ID von ${monitoringRepoName}: " + (repoName == monitoringRepoName ? "\${GIT_COMMIT}":"\${GIT_MONITORING}") + "\"\n" +
+                   "echo \"Commit-ID von ${shopAppRepoName}: " + (repoName == shopAppRepoName ? "\${GIT_COMMIT}":"\${GIT_SHOP_APP}") + "\"\n" +
+                   "echo \"Commit-ID von ${shopRestRepoName}: " + (repoName == shopRestRepoName ? "\${GIT_COMMIT}":"\${GIT_SHOP_REST}") + "\"\n" +
                    "cd Jenkins\nsudo dockerhub-push.sh"
 
         
@@ -214,12 +214,12 @@ sudo sh docker-build.sh'''
             trigger("tstage") {
                 condition('SUCCESS')
                 parameters { 
-                  predefinedProp("ACTORS_GIT_ID", name == actorsRepoName ? "\$GIT_COMMIT":"\$GIT_ACTORS")
-                  predefinedProp("MOVIES_GIT_ID", name == moviesRepoName ? "\$GIT_COMMIT":"\$GIT_MOVIES")
-                  predefinedProp("SHOP_REST_GIT_ID", name == shopRestRepoName ? "\$GIT_COMMIT":"\$GIT_SHOP_REST")
-                  predefinedProp("SHOP_APP_GIT_ID", name == shopAppRepoName ? "\$GIT_COMMIT":"\$GIT_SHOP_APP")
-                  predefinedProp("NAVIGATION_GIT_ID", name == navigationRepoName ? "\$GIT_COMMIT":"\$GIT_NAVIGATION")
-                  predefinedProp("MONITORING_GIT_ID", name == monitoringRepoName ? "\$GIT_COMMIT":"\$GIT_MONITORING")
+                  predefinedProp("ACTORS_GIT_ID", repoName == actorsRepoName ? "\$GIT_COMMIT":"\$GIT_ACTORS")
+                  predefinedProp("MOVIES_GIT_ID", repoName == moviesRepoName ? "\$GIT_COMMIT":"\$GIT_MOVIES")
+                  predefinedProp("SHOP_REST_GIT_ID", repoName == shopRestRepoName ? "\$GIT_COMMIT":"\$GIT_SHOP_REST")
+                  predefinedProp("SHOP_APP_GIT_ID", repoName == shopAppRepoName ? "\$GIT_COMMIT":"\$GIT_SHOP_APP")
+                  predefinedProp("NAVIGATION_GIT_ID", repoName == navigationRepoName ? "\$GIT_COMMIT":"\$GIT_NAVIGATION")
+                  predefinedProp("MONITORING_GIT_ID", repoName == monitoringRepoName ? "\$GIT_COMMIT":"\$GIT_MONITORING")
                 }
             }
         }
@@ -230,7 +230,7 @@ sudo sh docker-build.sh'''
     {
       jobs
       {
-        name("$jobName")
+        name(jobName)
       }
     }
   }
