@@ -98,7 +98,8 @@ repos.each
   def gitCloneUrl = it.clone_url	//Die Git-URL, die zum Klonen verwendet wird (d.h. mit *.git am Ende)
   def gitProjectUrl = it.html_url	//Die normale Web-URL des Projekts/Repos
   
-  if(name == moviesRepoName | name == actorsRepoName | name == navigationRepoName | name == monitoringRepoName | name == shopAppRepoName | name == shopAppRestName) 
+  if(name == moviesRepoName | name == actorsRepoName | name == navigationRepoName 
+          | name == monitoringRepoName | name == shopAppRepoName | name == shopAppRestName) 
   {
     println "Erstelle Job: ${name}"
     println "Git-Clone-URL: ${gitCloneUrl}"
