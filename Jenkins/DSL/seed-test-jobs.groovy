@@ -44,13 +44,12 @@ repos.each
       
       goals(mavenGoal)
       
-      postBuildSteps
+      
+      publishers
       {
-        downstreamParameterized
-        {
-          trigger(postProjects)
-        }
+        buildPipelineTrigger(postProjects)
       }
+      
     }
   }
 }
