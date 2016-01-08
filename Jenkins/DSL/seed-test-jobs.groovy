@@ -46,7 +46,7 @@ repos.each
       
       publishers
       {
-        downStream(postProjects, 'SUCCESS')
+        downstream(postProjects, 'SUCCESS')
       }
     }
   }
