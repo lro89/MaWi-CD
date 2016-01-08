@@ -230,9 +230,10 @@ sudo sh docker-build.sh'''
     {
       jobs
       {
-        name(jobName)
+        regex(jobName)
       }
-      columns {
+      columns 
+      {
         status()
         weather()
         name()
@@ -240,7 +241,7 @@ sudo sh docker-build.sh'''
         lastFailure()
         lastDuration()
         buildButton()
-    }
+      }
     }
   }
 }
