@@ -5,7 +5,7 @@ def artifactRepoID = "nexus"
 
 def mavenGoal = "test -Dmovie-database-url=http://ec2-52-29-100-175.eu-central-1.compute.amazonaws.com"
 
-def postProjects = ['p1-deploy','p2-deploy']
+def postProjects = ['p1-deploy','p2-deploy'] as String[]
 
 //Namen der jeweiligen Repo- bzw. Projekte
 def testRepoName = "movie-database-test"
