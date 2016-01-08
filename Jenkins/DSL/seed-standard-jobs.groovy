@@ -171,12 +171,12 @@ sudo sh docker-build.sh'''
         
         shell(shellCmd_DockerBuild)
         
-        def shellCmd_DockerPush = "Commit-ID von ${moviesRepoName}: " + name == moviesRepoName ? "$GIT_COMMIT":"$GIT_MOVIES" + "\n" +
-                   "Commit-ID von ${actorsRepoName}: " + name == actorsRepoName ? "$GIT_COMMIT":"$GIT_ACTORS" + "\n" +
-                   "Commit-ID von ${navigationRepoName}: " + name == navigationRepoName ? "$GIT_COMMIT":"$GIT_NAVIGATION" + "\n" +
-                   "Commit-ID von ${monitoringRepoName}: " + name == monitoringRepoName ? "$GIT_COMMIT":"$GIT_MONITORING" + "\n" +
-                   "Commit-ID von ${shopAppRepoName}: " + name == shopAppRepoName ? "$GIT_COMMIT":"$GIT_SHOP_APP" + "\n" +
-                   "Commit-ID von ${shopRestRepoName}: " + name == shopRestRepoName ? "$GIT_COMMIT":"$GIT_SHOP_REST" + "\n" +
+        def shellCmd_DockerPush = "Commit-ID von ${moviesRepoName}: " + name == moviesRepoName ? "\$GIT_COMMIT":"\$GIT_MOVIES" + "\n" +
+                   "Commit-ID von ${actorsRepoName}: " + name == actorsRepoName ? "\$GIT_COMMIT":"\$GIT_ACTORS" + "\n" +
+                   "Commit-ID von ${navigationRepoName}: " + name == navigationRepoName ? "\$GIT_COMMIT":"\$GIT_NAVIGATION" + "\n" +
+                   "Commit-ID von ${monitoringRepoName}: " + name == monitoringRepoName ? "\$GIT_COMMIT":"\$GIT_MONITORING" + "\n" +
+                   "Commit-ID von ${shopAppRepoName}: " + name == shopAppRepoName ? "\$GIT_COMMIT":"\$GIT_SHOP_APP" + "\n" +
+                   "Commit-ID von ${shopRestRepoName}: " + name == shopRestRepoName ? "\$GIT_COMMIT":"\$GIT_SHOP_REST" + "\n" +
                    "cd Jenkins\nsudo dockerhub-push.sh"
 
         
