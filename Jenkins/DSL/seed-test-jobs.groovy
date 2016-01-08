@@ -49,6 +49,11 @@ repos.each
         downStreamParameterized
         {
           trigger(postProjects)
+          {
+            parameters{
+              currentBuild()
+            }
+          }
         }
       }
     }
