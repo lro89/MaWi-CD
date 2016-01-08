@@ -37,7 +37,7 @@ repos.each
       
       triggers
       {
-        scm('H/5 * * * *') 
+        githubPush() 
       }
       
       rootPOM("pom.xml")
@@ -48,6 +48,12 @@ repos.each
       publishers
       {
         buildPipelineTrigger(postProjects.join(","))
+        {
+          parameters
+          {
+            currentBuild()
+          }
+        }
       }
       
     }
