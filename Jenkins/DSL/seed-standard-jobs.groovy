@@ -159,11 +159,21 @@ repos.each
             shellCmd_GitCommits = monitoringCmd_PostBuild_ReadCommitIDs
         }
         
+        //Git-Commits auslesen
         shell(shellCmd_GitCommits)
         
         environmentVariables
         {
           propertiesFile("env.properties")
+        }
+        
+        //Bei 'shop-app' muss noch ein zusätzlicher Befehl zur Installation der NPM-Tools etc. erfolgen
+        if(name == shopAppRepoName)
+        {
+          def shopAppCommand_JenkinsBuild = "cd Jenkins\n" +
+                                            "sudo sh build-jenkins.sh"
+                                            
+          shell(shopAppCommand_JenkinsBuild)        
         }
         
         def shellCmd_DockerBuild = '''cd Jenkins
