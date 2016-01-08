@@ -97,6 +97,7 @@ repos.each
   def name = it.name
   def gitCloneUrl = it.clone_url	//Die Git-URL, die zum Klonen verwendet wird (d.h. mit *.git am Ende)
   def gitProjectUrl = it.html_url	//Die normale Web-URL des Projekts/Repos
+  def jobName = "DSL-Test - ${name}"
   
   if(name == moviesRepoName | name == actorsRepoName | name == navigationRepoName 
           | name == monitoringRepoName | name == shopAppRepoName | name == shopRestRepoName) 
@@ -104,7 +105,7 @@ repos.each
     println "Erstelle Job: ${name}"
     println "Git-Clone-URL: ${gitCloneUrl}"
     
-    mavenJob("DSL-Test - ${name}")
+    mavenJob(jobName)
     {
       properties 
       {
@@ -229,7 +230,7 @@ sudo sh docker-build.sh'''
     {
       jobs
       {
-        name("${name}")
+        name(jobName)
       }
     }
   }
