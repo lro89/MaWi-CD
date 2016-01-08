@@ -47,7 +47,7 @@ repos.each
       
       publishers
       {
-        buildPipelineTrigger(postProjects)
+        buildPipelineTrigger(postProjects.join(","))
       }
       
     }
