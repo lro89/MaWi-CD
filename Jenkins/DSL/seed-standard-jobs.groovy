@@ -177,8 +177,7 @@ repos.each
           shell(shopAppCommand_JenkinsBuild)        
         }
         
-        def shellCmd_DockerBuild = '''cd Jenkins
-sudo sh docker-build.sh'''
+        def shellCmd_DockerBuild = "cd Jenkins\nsudo sh docker-build.sh"
         
         shell(shellCmd_DockerBuild)
         
