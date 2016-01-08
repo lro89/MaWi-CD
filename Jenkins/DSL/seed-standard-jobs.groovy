@@ -224,5 +224,13 @@ sudo sh docker-build.sh'''
         }
       }
     }
+    
+    listView('DSL-Jobs')
+    {
+      jobs
+      {
+        name(name)
+      }
+    }
   }
 }
