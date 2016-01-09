@@ -247,6 +247,6 @@ repos.each
       pipelines {
         component("${repoName}", "${jobName}")
       }
-	}
+    }
   }
 }
