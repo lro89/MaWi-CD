@@ -226,7 +226,7 @@ repos.each
       }
     }
     
-    buildPipelineView("Build-Pipeline - ${repoName}") 
+    buildPipelineView("Build-Pipeline - ${jobName}") 
     {
       title("Build-Pipeline - ${jobName}")
       description("Diese Pipeline-Ansicht wurde automatisch via DSL generiert!")
@@ -237,7 +237,7 @@ repos.each
       refreshFrequency(3)
     }
     
-    deliveryPipelineView("Delivery Pipeline - ${repoName}") 
+    deliveryPipelineView("Delivery Pipeline - ${jobName}") 
     {
       pipelineInstances(3)
       columns(1)
