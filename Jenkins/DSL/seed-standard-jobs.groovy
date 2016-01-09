@@ -226,24 +226,27 @@ repos.each
       }
     }
     
-    /*
-    listView('DSL-Jobs')
+    buildPipelineView("Build-Pipeline - ${repoName}") 
     {
-      jobs
-      {
-        regex(jobName)
+      title("Build-Pipeline - ${repoName}")
+      description("Diese Pipeline-Ansicht wurde automatisch via DSL generiert!")
+      displayedBuilds(3)
+      selectedJob("${repoName}")
+      alwaysAllowManualTrigger()
+      showPipelineParameters()
+      refreshFrequency(3)
+	}
+    
+    deliveryPipelineView("Delivery Pipeline - ${repoName}") 
+    {
+      pipelineInstances(3)
+      columns(1)
+      updateInterval(3)
+      enableManualTriggers()
+      showChangeLog()
+      pipelines {
+        component("${repoName}", "${jobName}")
       }
-      columns 
-      {
-        status()
-        weather()
-        name()
-        lastSuccess()
-        lastFailure()
-        lastDuration()
-        buildButton()
-      }
-    }
-    */
+	}
   }
 }
