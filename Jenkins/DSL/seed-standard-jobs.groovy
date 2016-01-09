@@ -228,14 +228,14 @@ repos.each
     
     buildPipelineView("Build-Pipeline - ${repoName}") 
     {
-      title("Build-Pipeline - ${repoName}")
+      title("Build-Pipeline - ${jobName}")
       description("Diese Pipeline-Ansicht wurde automatisch via DSL generiert!")
       displayedBuilds(3)
-      selectedJob("${repoName}")
+      selectedJob("${jobName}")
       alwaysAllowManualTrigger()
       showPipelineParameters()
       refreshFrequency(3)
-	}
+    }
     
     deliveryPipelineView("Delivery Pipeline - ${repoName}") 
     {
